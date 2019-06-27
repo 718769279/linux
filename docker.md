@@ -41,3 +41,17 @@ docker stop 容器名称或者容器id
 
 删除容器文件
 docker container rm 容器名称或者容器id
+
+进入正在运行的容器
+docker attach 容器名称或者容器id
+
+--------------------------------------------------------------------------
+运行实例
+创建es数据库
+docker run --name es -d -p 9200:9200 -p 9300:9300 -e ES_JAVA_OPTS="-Xms256m -Xmx1024m" -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.2.0
+
+创建apache服务器
+docker run --name apache -p 8088:80 -d httpd:2.4.33
+
+创建centos服务器
+docker run --name myCentos -it centos /bin/bash
