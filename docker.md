@@ -15,6 +15,12 @@ docker run -p 8080:80 -d httpd:2.4.33
 进入容器
 docker exec -it 容器名称 /bin/bash
 
+启动容器
+docker start 容器名称或者容器id
+
+关闭容器
+docker stop 容器名称或者容器id
+
 退出容器
 Ctrl+d 或者 命令行输入exit
 
@@ -26,6 +32,9 @@ docker rmi 镜像名称
 
 查看正在运行的所有容器
 docker ps
+
+查看所有容器
+docker ps -a
 
 停止某个容器
 docker stop 容器名称或者容器id
