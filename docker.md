@@ -64,5 +64,5 @@ docker commit -m '添加常用软件' -a 'wangwen123' 容器id wangwen123/centos
 
 提交镜像到远程
 docker login
-docker pull wangwen123/centos:mylinux
+docker push wangwen123/centos:mylinux
 此时任何地方都可以拉取到自己的远程镜像了
