@@ -55,3 +55,14 @@ docker run --name apache -p 8088:80 -d httpd:2.4.33
 
 创建centos服务器
 docker run --name myCentos -it centos /bin/bash
+
+创建自己的镜像
+创建自己的镜像是基于容器创建的，而且该容器是关闭状态
+docker commit -m '添加常用软件' -a 'wangwen123' 容器id wangwen123/centos:mylinux
+参数说明：
+-m 来指定提交的说明信息，跟我们使用的版本控制工具一样；-a 可以指定更新的用户信息；之后是用来创建镜像的容器的 ID；最后指定目标镜像的仓库名和 tag 信息
+
+提交镜像到远程
+docker login
+docker pull wangwen123/centos:mylinux
+此时任何地方都可以拉取到自己的远程镜像了
