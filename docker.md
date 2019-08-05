@@ -66,3 +66,27 @@ docker commit -m '添加常用软件' -a 'wangwen123' 容器id wangwen123/centos
 docker login
 docker push wangwen123/centos:mylinux
 此时任何地方都可以拉取到自己的远程镜像了
+
+lnmp搭建
+创建mysql容器
+docker run \
+--name doc_mysql \
+-p 3306:3306 \
+--restart=always \
+-e MYSQL_ROOT_PASSWORD=123456 \
+-v /var/lib/mysql/:/var/lib/mysql/ \
+-d mysql:latest \
+--character-set-server=utf8mb4 \
+--collation-server=utf8mb4_unicode_ci
+
+创建php容器
+docker run -d -v /home/wangwen/www:/var/www/html -p 9000:9000 --link doc_mysql:mysql --name doc_phpfpm php:7.3-fpm
+
+创建nginx容器
+docker run -d -p 80:80 --name doc_nginx -v /home/wangwen/www:/var/www/html --link doc_phpfpm:phpfpm nginx:latest
+
+nginx 解析php
+fastcgi_pass 容器ip或者容器名称：9000
+fastcgi_params SCRIPT_FILENAME /var/www/html$fastcgi_script_name;
+
+安装php扩展，进入php容器 执行docker-php-ext-install mysqli
